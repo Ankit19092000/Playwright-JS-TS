@@ -16,5 +16,13 @@ test("First Test", async ({ page }) => {
   await signInButton.click();
   console.log(await page.locator("[style*='block']").textContent());
   expect(await page.locator("[style*='block']").textContent()).toContain("Incorrect username/password.");
+
+
+
+
+  //second test
+  await username.fill("rahulshettyacademy");
+  await password.fill("Learning@830$3mK2");
+  await signInButton.click();
 });
 

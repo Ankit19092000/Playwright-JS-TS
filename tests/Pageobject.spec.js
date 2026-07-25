@@ -1,13 +1,13 @@
 import { test, expect } from "@playwright/test";
+import { LoginPage } from "./pageobjects/LoginPage.js";
 
 test.use({headless:false})
 
 const baseurl="https://rahulshettyacademy.com/client/"
 async function EcommerceLogin(page){
     await page.goto(baseurl);
-    await page.getByPlaceholder("email@example.com").fill("ankitguptapl19@gmail.com");
-    await page.getByPlaceholder("enter your passsword").fill("Ankit19gids");
-    await page.getByRole("button",{name:'Login'}).click();
+    const loginPage = new LoginPage(page);
+    await loginPage.validLogin("ankitguptapl19@gmail.com","Ankit19gids");
     await page.waitForLoadState('networkidle');
     await page.locator(".card-body b").first().waitFor();
     
@@ -105,50 +105,3 @@ await page.getByText(idonly).first().waitFor()
 const boolean = await page.getByText(idonly).isVisible()
 expect(boolean).toBeTruthy()
  })
-
-
- test("calendar",async({browser})=> {
-
-   const month = "1"
-   const year = "2025"
-   const day = "22"
-
-   const context = await browser.newContext();
-   const page = await context.newPage();
-   await page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
-   await page.locator(".react-date-picker__inputGroup__year").click()
-   //await page.locator(".react-calendar__navigation__label span").waitFor()
-   await page.locator(".react-calendar__navigation__label").click()
-   await page.locator(".react-calendar__navigation__label").click()
-
-
-   await page.getByText(year).click()
-   await page.locator(".react-calendar__year-view__months__month").nth(Number(month)-1).click()
-   await page.locator("//abbr[text()='"+day+"']").click()
-   await page.pause()
-
-})
-
-
-test.only("Automation Exercise",async({browser})=>{
-
-  const context= await browser.newContext();
-  const page = await context.newPage();
-
-
-  await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
-  await page.screenshot({path: "screenshot.png" })
-  await page.goto("https://www.google.com/")
-  await page.locato("text=Images").screenshot({path: "screenshot2.png" })
-  await page.goBack()
-  await page.goForward()
-
-
-
-
-
-
-
-
-
-})

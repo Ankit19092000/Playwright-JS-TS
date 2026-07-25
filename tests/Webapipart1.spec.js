@@ -45,6 +45,8 @@ test ('Client app login', async({page}) =>{
     await page.addInitScript(value => {
         window.localStorage.setItem('token', value)
     }, token)
+
+
     await page.goto("https://rahulshettyacademy.com/client")
 
 

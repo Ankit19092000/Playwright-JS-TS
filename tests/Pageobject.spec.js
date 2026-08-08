@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "./pageobjects/LoginPage.js";
+import Data from "./utils/placeordertestdata.json" assert { type: "json" };
 
 test.use({headless:false})
 
@@ -7,7 +8,7 @@ const baseurl="https://rahulshettyacademy.com/client/"
 async function EcommerceLogin(page){
     await page.goto(baseurl);
     const loginPage = new LoginPage(page);
-    await loginPage.validLogin("ankitguptapl19@gmail.com","Ankit19gids");
+    await loginPage.validLogin(Data.username, Data.password);
     await page.waitForLoadState('networkidle');
     await page.locator(".card-body b").first().waitFor();
     

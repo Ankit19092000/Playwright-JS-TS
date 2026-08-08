@@ -11,7 +11,7 @@ class APIutils {
             { data: loginPayload }
         );
         expect(loginResponse.ok()).toBeTruthy();
-        const loginResponseBody = await loginResponse.json();
+        const loginResponseBody = await loginResrponse.json();
         console.log(loginResponseBody);
         const token = loginResponseBody.token;
         console.log(token);
